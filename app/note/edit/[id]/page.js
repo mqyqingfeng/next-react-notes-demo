@@ -1,14 +1,14 @@
-import Note from '@/components/Note'
+import NoteEditor from '@/components/NoteEditor'
 import {getNote} from '@/lib/redis';
 
-export default async function Page({ params }) {
+export default async function EditPage({ params }) {
   const noteId = params.id;
   const note = await getNote(noteId)
-  
-  const sleep = ms => new Promise(r => setTimeout(r, ms));
-  // await sleep(10000);
 
-  if (note == null) {
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  // await sleep(5000);
+
+  if (note === null) {
     return (
       <div className="note--empty-state">
         <span className="note-text--empty-state">
@@ -18,5 +18,5 @@ export default async function Page({ params }) {
     )
   }
 
-  return <Note noteId={noteId} note={note} />
+  return <NoteEditor noteId={noteId} initialTitle={note.title} initialBody={note.content} />
 }
