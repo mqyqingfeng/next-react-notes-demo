@@ -37,12 +37,14 @@ export async function saveNote(prevState, formData) {
   if (noteId) {
     await updateNote(noteId, JSON.stringify(data))
     revalidatePath('/', 'layout')
+    redirect(`/note/${noteId}`)
   } else {
-    await addNote(JSON.stringify(data))
+    const res = await addNote(JSON.stringify(data))
     revalidatePath('/', 'layout')
+    redirect(`/note/${res}`)
   }
   
-  return { message: `Add Success!` }
+  // return { message: `Add Success!` }
 }
 
 export async function deleteNote(prevState, formData) {
