@@ -2,6 +2,7 @@ import Note from '@/components/Note'
 import {getNote} from '@/lib/redis';
 
 export default async function Page({ params }) {
+  console.log(params)
   const noteId = params.id;
   const note = await getNote(noteId)
   
