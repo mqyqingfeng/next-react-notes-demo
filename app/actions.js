@@ -31,7 +31,7 @@ export async function saveNote(prevState, formData) {
   }
 
   // 模拟请求时间
-  await sleep(2000)
+  // await sleep(2000)
 
   // 更新数据库
   if (noteId) {

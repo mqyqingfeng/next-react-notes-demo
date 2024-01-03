@@ -5,7 +5,7 @@ import SidebarNoteItemHeader from '@/components/SidebarNoteItemHeader';
 
 export default async function NoteList() {
 
-  await sleep(2000)
+  // await sleep(2000)
   const notes = await getAllNotes()
 
   if (Object.entries(notes).length == 0) {
