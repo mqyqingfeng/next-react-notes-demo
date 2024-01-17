@@ -1,5 +1,5 @@
 import NoteEditor from '@/components/NoteEditor'
-import {getNote} from '@/lib/redis';
+import {getNote} from '@/lib/strapi';
 
 export default async function EditPage({ params }) {
   const noteId = params.id;
