@@ -34,7 +34,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
       return user
     }
-  }), GitHub],
+  })],
   pages: {
     signIn: '/auth/signin'
   },
@@ -54,5 +54,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       session.user.userId = token.userId;
       return session;
     }
-  }
+  },
+  trustHost: true
 })
