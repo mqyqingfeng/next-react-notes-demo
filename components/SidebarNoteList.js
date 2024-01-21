@@ -1,6 +1,7 @@
 import SidebarNoteListFilter from '@/components/SidebarNoteListFilter';
-import { getAllNotes } from '@/lib/strapi';
+import { getAllNotes } from '@/lib/prisma';
 import { sleep } from '@/lib/utils';
+import { prisma } from "@/lib/prisma"
 import SidebarNoteItemHeader from '@/components/SidebarNoteItemHeader';
 
 export default async function NoteList() {
