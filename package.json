@@ -6,15 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prod": "next build && next start"
   },
   "dependencies": {
+    "@prisma/client": "^5.8.1",
     "dayjs": "^1.11.10",
     "ioredis": "^5.3.2",
     "marked": "^11.1.0",
     "mime": "^4.0.1",
     "next": "14.0.4",
-    "next-auth": "^5.0.0-beta.4",
+    "next-auth": "^5.0.0-beta.5",
     "react": "^18",
     "react-dom": "^18",
     "sanitize-html": "^2.11.0",
@@ -22,6 +24,7 @@
   },
   "devDependencies": {
     "eslint": "^8",
-    "eslint-config-next": "14.0.4"
+    "eslint-config-next": "14.0.4",
+    "prisma": "^5.8.1"
   }
 }

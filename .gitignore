@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+dist/config.dev.js
+dist/i18n.dev.js
+dist/i18n.js
+dist/middleware.dev.js
+dist/next.config.dev.js
+lib/dist/utils.dev.js

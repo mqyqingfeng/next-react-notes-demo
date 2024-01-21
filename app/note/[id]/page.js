@@ -1,10 +1,9 @@
 import Note from '@/components/Note'
-import {getNote} from '@/lib/strapi';
+import {getNote} from '@/lib/prisma';
 
 export default async function Page({ params }) {
   const noteId = params.id;
   const note = await getNote(noteId)
-  
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   // await sleep(10000);
 
