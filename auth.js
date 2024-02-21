@@ -1,5 +1,5 @@
 import NextAuth from "next-auth"
-import GitHub from "next-auth/providers/github"
+// import GitHub from "next-auth/providers/github"
 import CredentialsProvider from "next-auth/providers/credentials";
 import { addUser, getUser } from "@/lib/prisma";
 
@@ -51,8 +51,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return token;
     },
     async session({ session, token }) {
-      session.user.userId = token.userId;
+      if (token.userId) {
+        session.user.userId = token.userId
+      }
       return session;
+    },
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith("/")) return `${baseUrl}${url}`
+      else if (new URL(url).origin === baseUrl) return url
+      if (baseUrl.indexOf(":3000") > -1) return url
+      return baseUrl
     }
   },
   trustHost: true

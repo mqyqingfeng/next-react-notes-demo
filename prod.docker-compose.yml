@@ -1,0 +1,61 @@
+version: "3.8"
+
+networks:
+  react-notes-prod:
+    driver: bridge
+
+services:
+  next-app-prod:
+    container_name: next-app
+    build:
+      context: .
+      dockerfile: prod.Dockerfile
+    env_file:
+      - .env
+      - .env.production
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - react-notes-prod
+    depends_on:
+      mysql:
+        condition: service_healthy
+      
+  mysql:
+    image: mysql:8.0
+    container_name: next-app-mysql
+    command: --default-authentication-plugin=caching_sha2_password
+    restart: unless-stopped
+    # volumes:
+    #   - ./docker/data/mysql/:/var/lib/mysql/
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=notes
+      - MYSQL_USER=notes
+      - MYSQL_PASSWORD=cpZfriEBbmJjWeiR
+    ports:
+      - '3306:3306'
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h127.0.0.1', '-P3306']
+      interval: 5s
+      timeout: 2s
+      retries: 20
+    networks:
+      - react-notes-prod
+
+  nginx:
+    image: nginx
+    container_name: next-app-nginx
+    volumes:
+      - ./docker/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/ssl/notes.yayujs.com.key:/etc/nginx/ssl/notes.yayujs.com.key
+      - ./docker/ssl/notes.yayujs.com.pem:/etc/nginx/ssl/notes.yayujs.com.pem
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    networks:
+      - react-notes-prod
+    depends_on:
+      - next-app-prod

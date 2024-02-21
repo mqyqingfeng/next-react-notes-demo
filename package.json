@@ -10,7 +10,7 @@
     "prod": "next build && next start"
   },
   "dependencies": {
-    "@prisma/client": "^5.8.1",
+    "@prisma/client": "^5.10.1",
     "dayjs": "^1.11.10",
     "ioredis": "^5.3.2",
     "marked": "^11.1.0",
@@ -25,6 +25,6 @@
   "devDependencies": {
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
-    "prisma": "^5.8.1"
+    "prisma": "^5.10.1"
   }
 }
